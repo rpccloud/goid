@@ -27,9 +27,9 @@ jobs:
         run: |
           go test ./... -timeout 20m -race -coverprofile=cover.out -covermode=atomic
 
-      - name: Get Curr pwd
+      - name: Generage coverage.txt
         run: |
-          pwd
+          mv cover.out > coverage.txt
 
       - name: LS
         run: |
