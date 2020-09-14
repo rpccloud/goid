@@ -28,8 +28,5 @@ jobs:
           go test ./... -timeout 20m -race -coverprofile=./coverage.txt -covermode=atomic
 
       - name: Upload coverage to codecov
-        uses: codecov/codecov-action@v1
-        with:
-          file: ./coverage.txt
-          flags: unittests
-          fail_ci_if_error: true
+        run: |
+          bash <(curl -s https://codecov.io/bash)
