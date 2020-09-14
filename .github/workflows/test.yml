@@ -25,7 +25,7 @@ jobs:
 
       - name: Test and generate coverage report
         run: |
-          go test ./... -timeout 20m -race -coverprofile=./coverage.txt -covermode=atomic
+          go test ./... -timeout 20m -race -coverprofile=cover.out -covermode=atomic
 
       - name: Get Curr pwd
         run: |
