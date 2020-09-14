@@ -26,22 +26,25 @@ func TestGetGidPos(t *testing.T) {
 func TestGidFast(t *testing.T) {
 	idMap := make(map[int64]bool)
 	waitCH := make(chan bool)
-	testCount := 10000
+	testCount := 1000
 	mu := &sync.Mutex{}
 	for i := 0; i < testCount; i++ {
 		go func() {
-			id := GoRoutineId()
-			if id <= 0 {
-				t.Fatalf("GoRoutineId test error")
-			}
 			mu.Lock()
 			defer mu.Unlock()
+			id := GoRoutineId()
 			idMap[id] = true
-			waitCH <- true
+			if id > 0 {
+				waitCH <- true
+			} else {
+				waitCH <- false
+			}
 		}()
 	}
 	for i := 0; i < testCount; i++ {
-		<-waitCH
+		if !<-waitCH {
+			t.Fatalf("GoRoutineId test error")
+		}
 	}
 	if len(idMap) != testCount {
 		t.Fatalf("GoRoutineId test error")
@@ -57,22 +60,25 @@ func TestGidSlow(t *testing.T) {
 
 	idMap := make(map[int64]bool)
 	waitCH := make(chan bool)
-	testCount := 10000
+	testCount := 1000
 	mu := &sync.Mutex{}
 	for i := 0; i < testCount; i++ {
 		go func() {
-			id := GoRoutineId()
-			if id <= 0 {
-				t.Fatalf("GoRoutineId test error")
-			}
 			mu.Lock()
 			defer mu.Unlock()
+			id := GoRoutineId()
 			idMap[id] = true
-			waitCH <- true
+			if id > 0 {
+				waitCH <- true
+			} else {
+				waitCH <- false
+			}
 		}()
 	}
 	for i := 0; i < testCount; i++ {
-		<-waitCH
+		if !<-waitCH {
+			t.Fatalf("GoRoutineId test error")
+		}
 	}
 	if len(idMap) != testCount {
 		t.Fatalf("GoRoutineId test error")

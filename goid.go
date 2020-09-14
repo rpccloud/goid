@@ -60,7 +60,7 @@ var getGidPos = func() func() int {
 		}
 
 		for i := 0; i < checkCount; i++ {
-			if <-ret == false {
+			if !<-ret {
 				return false
 			}
 		}
