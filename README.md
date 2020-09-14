@@ -1,5 +1,5 @@
 # goid
-Get current goroutine id 
+An elegant way to get goroutine id
 
 ## Usage
 ```go
