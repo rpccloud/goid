@@ -27,10 +27,6 @@ jobs:
         run: |
           go test ./... -timeout 20m -race -coverprofile coverage.txt -covermode=atomic
 
-      - name: LS
-        run: |
-          ls
-
       - name: Upload coverage to codecov
         uses: codecov/codecov-action@v1
         with:
