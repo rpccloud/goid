@@ -25,8 +25,11 @@ jobs:
 
       - name: Test and generate coverage report
         run: |
-          go test ./... -timeout 20m -race -coverprofile=./coverage.txt -covermode=atomic
+          go test ./... -timeout 20m -race -coverprofile=coverage.txt -covermode=atomic
 
-      - name: Upload coverage to codecov
-        run: |
-          bash <(curl -s https://codecov.io/bash)
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
+        with:
+          file: coverage.txt
+          flags: unittests
+          fail_ci_if_error: true
