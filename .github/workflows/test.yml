@@ -27,7 +27,7 @@ jobs:
 
       - name: Test and generate coverage report
         run: |
-          go test ./... -timeout 20m -race -run=Coverage -coverprofile=c.out -covermode=atomic
+          go test ./... -timeout 20m -race -run=Coverage -coverprofile c.out -covermode=atomic
 
       - name: LS
         run: |
