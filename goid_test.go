@@ -85,9 +85,11 @@ func TestGidSlow(t *testing.T) {
 	}
 }
 
-func BenchmarkG(b *testing.B) {
+func BenchmarkGoRoutineId(b *testing.B) {
 	b.ReportAllocs()
-	for i := 0; i < b.N; i++ {
-		GoRoutineId()
-	}
+	b.RunParallel(func(pb *testing.PB) {
+		for pb.Next() {
+			GoRoutineId()
+		}
+	})
 }
