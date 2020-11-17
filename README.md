@@ -1,4 +1,10 @@
 # goid
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Test](https://github.com/rpccloud/goid/workflows/Test/badge.svg)](https://github.com/rpccloud/goid/actions?query=workflow%3ATest)
+[![Lint](https://github.com/rpccloud/goid/workflows/Lint/badge.svg)](https://github.com/rpccloud/goid/actions?query=workflow%3ALint)
+[![codecov](https://codecov.io/gh/rpccloud/goid/branch/master/graph/badge.svg)](https://codecov.io/gh/rpccloud/goid)
+[![Go Report Card](https://goreportcard.com/badge/github.com/rpccloud/goid)](https://goreportcard.com/report/github.com/rpccloud/goid)
+
 An elegant way to get goroutine id
 
 ## Usage
