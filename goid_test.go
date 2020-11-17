@@ -32,7 +32,7 @@ func TestGidFast(t *testing.T) {
 		go func() {
 			mu.Lock()
 			defer mu.Unlock()
-			id := GoRoutineId()
+			id := GetRoutineId()
 			idMap[id] = true
 			if id > 0 {
 				waitCH <- true
@@ -43,11 +43,11 @@ func TestGidFast(t *testing.T) {
 	}
 	for i := 0; i < testCount; i++ {
 		if !<-waitCH {
-			t.Fatalf("GoRoutineId test error")
+			t.Fatalf("GetRoutineId test error")
 		}
 	}
 	if len(idMap) != testCount {
-		t.Fatalf("GoRoutineId test error")
+		t.Fatalf("GetRoutineId test error")
 	}
 }
 
@@ -66,7 +66,7 @@ func TestGidSlow(t *testing.T) {
 		go func() {
 			mu.Lock()
 			defer mu.Unlock()
-			id := GoRoutineId()
+			id := GetRoutineId()
 			idMap[id] = true
 			if id > 0 {
 				waitCH <- true
@@ -77,19 +77,19 @@ func TestGidSlow(t *testing.T) {
 	}
 	for i := 0; i < testCount; i++ {
 		if !<-waitCH {
-			t.Fatalf("GoRoutineId test error")
+			t.Fatalf("GetRoutineId test error")
 		}
 	}
 	if len(idMap) != testCount {
-		t.Fatalf("GoRoutineId test error")
+		t.Fatalf("GetRoutineId test error")
 	}
 }
 
-func BenchmarkGoRoutineId(b *testing.B) {
+func BenchmarkGetRoutineId(b *testing.B) {
 	b.ReportAllocs()
 	b.RunParallel(func(pb *testing.PB) {
 		for pb.Next() {
-			GoRoutineId()
+			GetRoutineId()
 		}
 	})
 }

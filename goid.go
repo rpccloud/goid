@@ -81,11 +81,11 @@ var getGidPos = func() func() int {
 	}
 }()
 
-// GoRoutineId get routiine id
-func GoRoutineId() int64 {
+// GetRoutineId get current goroutine id
+func GetRoutineId() int64 {
 	if gidPos >= 0 {
 		return *(*int64)(unsafe.Pointer(uintptr(getg()) + uintptr(gidPos)))
-	} 
-  
+	}
+
 	return slowID()
 }
